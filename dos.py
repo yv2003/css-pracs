@@ -3,6 +3,7 @@ import sys
  
 print("][ Attacking " + sys.argv[1] + " ... ][")
 print("injecting " + sys.argv[2])
+print("the above line prints attacking addresses..ig")
  
 def attack():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
