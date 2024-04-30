@@ -1,0 +1,44 @@
+import random
+
+def custom_hash(input_string):
+    # Initialize hash value
+    hash_value = 0
+    
+    def is_prime(n):
+        if n <= 1:
+            return False
+        elif n <= 3:
+            return True
+        elif n % 2 == 0 or n % 3 == 0:
+            return False
+        i = 5
+        while i * i <= n:
+            if n % i == 0 or n % (i + 2) == 0:
+                return False
+            i += 6
+        return True
+
+    def generate_random_prime():
+        while True:
+            candidate = random.randint(2, 100)
+            if is_prime(candidate):
+                return candidate
+
+    # Define prime numbers for hashing
+    prime1 = generate_random_prime()
+    prime2 = generate_random_prime()
+    
+    # Iterate through each character in the input string
+    for char in input_string:
+        # Perform mathematical operations
+        hash_value = ((hash_value << 5) + hash_value + ord(char) * prime1) % 1000000007
+    
+    return hash_value
+
+# Example usage
+input_string1 = "hello"
+input_string2 = "hello"
+hashed_value1 = custom_hash(input_string1)
+hashed_value2 = custom_hash(input_string2)
+print("Hash value for", input_string1, ":", hashed_value1)
+print("Hash value for", input_string2, ":", hashed_value2)
